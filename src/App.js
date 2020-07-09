@@ -52,6 +52,8 @@ class App extends Component {
             alert('An error occured:\n' + jqXHR.responseText);
         }
     });
+    console.log("session:" + Auth.currentSession);
+    console.log("creds:" + Auth.currentCredentials);
   }
 }
 
