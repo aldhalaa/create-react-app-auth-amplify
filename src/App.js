@@ -7,25 +7,52 @@ import aws_exports from './aws-exports';
 Amplify.configure(aws_exports);
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+          
+        <form onSubmit={this.handleSubmit}>
+          <label htmlFor="ec2-start">
+            Begin an Ec2 Instance
+          </label>
+          <input
+            id="ec2-start"
+          />
+          <button>
+            Start Ec2 Instance
+          </button>
+        </form>
+          
         </header>
       </div>
     );
+  }
+  
+  handleSubmit(e) {
+    e.preventDefault();
+    console.log("submitting:" + e.target.value)
+    $.ajax({
+        method: 'POST',
+        url: "https://indi5hwb64.execute-api.ca-central-1.amazonaws.com/prod" + '/ride',
+        headers: {
+            Authorization: "test"
+        },
+        data: JSON.stringify({
+            Ec2Instance: e.target.value
+        }),
+        contentType: 'application/json',
+        success: completeRequest,
+        error: function ajaxError(jqXHR, textStatus, errorThrown) {
+            console.error('Response: ', jqXHR.responseText);
+            alert('An error occured:\n' + jqXHR.responseText);
+        }
+    });
   }
 }
 
