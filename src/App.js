@@ -38,12 +38,13 @@ class App extends Component {
     e.preventDefault();
     console.log("submitting:" + e.target.value)
     Auth.currentSession().then(token => {
+      onsole.log("token:" + token);
       const requestOptions = {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ Ec2Instance: e.target.value }),
           headers: {
-              Authorization: token.getIdToken().getJwtToken();
+              Authorization: token.getIdToken();
           },
       };
       fetch('https://indi5hwb64.execute-api.ca-central-1.amazonaws.com/prod/ec2', requestOptions)
