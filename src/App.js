@@ -37,6 +37,22 @@ class App extends Component {
   handleSubmit(e) {
     e.preventDefault();
     console.log("submitting:" + e.target.value)
+    Auth.currentSession().then(token => {
+      const requestOptions = {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ Ec2Instance: e.target.value }),
+          headers: {
+              Authorization: token.getIdToken().getJwtToken();
+          },
+      };
+      fetch('https://indi5hwb64.execute-api.ca-central-1.amazonaws.com/prod/ec2', requestOptions)
+          .then(response => response.json())
+          .catch(error => {
+              console.error('There was an error!', error);
+          });
+    };
+    /*
     $.ajax({
         method: 'POST',
         url: "https://indi5hwb64.execute-api.ca-central-1.amazonaws.com/prod" + '/ec2',
@@ -52,8 +68,8 @@ class App extends Component {
             alert('An error occured:\n' + jqXHR.responseText);
         }
     });
-    console.log("session:" + Auth.currentSession);
-    console.log("creds:" + Auth.currentCredentials);
+    */
+    console.log("session:" + Auth);
   }
 }
 
