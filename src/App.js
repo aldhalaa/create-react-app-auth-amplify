@@ -44,7 +44,7 @@ class App extends Component {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ Ec2Instance: e.target.value }),
           headers: {
-              Authorization: token.getIdToken();
+              Authorization: token.getIdToken()
           },
       };
       fetch('https://indi5hwb64.execute-api.ca-central-1.amazonaws.com/prod/ec2', requestOptions)
