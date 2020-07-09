@@ -52,7 +52,7 @@ class App extends Component {
           .catch(error => {
               console.error('There was an error!', error);
           });
-    };
+    });
     /*
     $.ajax({
         method: 'POST',
