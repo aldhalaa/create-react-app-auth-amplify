@@ -47,7 +47,6 @@ class App extends Component {
             Ec2Instance: e.target.value
         }),
         contentType: 'application/json',
-        success: completeRequest,
         error: function ajaxError(jqXHR, textStatus, errorThrown) {
             console.error('Response: ', jqXHR.responseText);
             alert('An error occured:\n' + jqXHR.responseText);
