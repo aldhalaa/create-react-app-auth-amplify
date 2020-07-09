@@ -38,7 +38,7 @@ class App extends Component {
     e.preventDefault();
     console.log("submitting:" + e.target.value)
     Auth.currentSession().then(token => {
-      onsole.log("token:" + token);
+      console.log("token:" + token);
       const requestOptions = {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
