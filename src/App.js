@@ -9,6 +9,9 @@ Amplify.configure(aws_exports);
 class App extends Component {
   constructor(props) {
     super(props);
+    this.state = {value: ''};
+
+    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   
@@ -21,9 +24,7 @@ class App extends Component {
           <label htmlFor="ec2-start">
             Begin an Ec2 Instance
           </label>
-          <input
-            id="ec2-start"
-          />
+          <input type="text" value={this.state.value} onChange={this.handleChange} />
           <button>
             Start Ec2 Instance
           </button>
@@ -34,15 +35,18 @@ class App extends Component {
     );
   }
   
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+  
   handleSubmit(e) {
-    e.preventDefault();
-    console.log("submitting:" + e.target.value)
+    console.log("submitting:" + this.state.value)
     Auth.currentSession().then(token => {
       console.log("token:" + token);
       const requestOptions = {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ Ec2Instance: e.target.value }),
+          body: JSON.stringify({ Ec2Instance:  this.state.value }),
           headers: {
               Authorization: token.getIdToken()
           },
@@ -52,6 +56,7 @@ class App extends Component {
           .catch(error => {
               console.error('There was an error!', error);
           });
+      e.preventDefault();
     });
     /*
     $.ajax({
