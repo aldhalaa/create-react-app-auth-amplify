@@ -39,7 +39,7 @@ class App extends Component {
     console.log("submitting:" + e.target.value)
     $.ajax({
         method: 'POST',
-        url: "https://indi5hwb64.execute-api.ca-central-1.amazonaws.com/prod" + '/ride',
+        url: "https://indi5hwb64.execute-api.ca-central-1.amazonaws.com/prod" + '/ec2',
         headers: {
             Authorization: "test"
         },
