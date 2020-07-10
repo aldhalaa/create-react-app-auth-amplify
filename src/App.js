@@ -40,7 +40,7 @@ class App extends Component {
   }
   
   handleSubmit(e) {
-    e.preventDefault();
+    
     console.log("submitting:" + this.state.value)
     Auth.currentSession().then(token => {
       console.log("token:" + token);
@@ -52,12 +52,13 @@ class App extends Component {
               Authorization: token.getIdToken().getJwtToken()
           },
       };
-      await fetch('https://indi5hwb64.execute-api.ca-central-1.amazonaws.com/prod/ec2', requestOptions)
+      fetch('https://indi5hwb64.execute-api.ca-central-1.amazonaws.com/prod/ec2', requestOptions)
           .then(response => response.json())
           .catch(error => {
               console.error('There was an error!', error);
           });
     });
+    e.preventDefault();
     /*
     $.ajax({
         method: 'POST',
