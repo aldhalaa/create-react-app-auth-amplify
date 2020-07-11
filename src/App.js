@@ -6,7 +6,7 @@ import Amplify, { Auth } from 'aws-amplify';
 import aws_exports from './aws-exports';
 Amplify.configure(aws_exports);
 
-const endpoint = 'https://0ccqzkam2j.execute-api.me-south-1.amazonaws.com/Prod'
+const endpoint = 'https://0ccqzkam2j.execute-api.me-south-1.amazonaws.com/Prod/ec2'
 
 class App extends Component {
   constructor(props) {
