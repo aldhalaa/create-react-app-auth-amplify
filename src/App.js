@@ -6,6 +6,8 @@ import Amplify, { Auth } from 'aws-amplify';
 import aws_exports from './aws-exports';
 Amplify.configure(aws_exports);
 
+const endpoint = 'https://gc6v2eugt0.execute-api.ap-south-1.amazonaws.com/Prod/ec2'
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -52,31 +54,13 @@ class App extends Component {
               Authorization: token.getIdToken().getJwtToken()
           },
       };
-      fetch('https://indi5hwb64.execute-api.ca-central-1.amazonaws.com/prod/ec2', requestOptions)
+      fetch(endpoint, requestOptions)
           .then(response => response.json())
           .catch(error => {
               console.error('There was an error!', error);
           });
     });
     e.preventDefault();
-    /*
-    $.ajax({
-        method: 'POST',
-        url: "https://indi5hwb64.execute-api.ca-central-1.amazonaws.com/prod" + '/ec2',
-        headers: {
-            Authorization: "test"
-        },
-        data: JSON.stringify({
-            Ec2Instance: e.target.value
-        }),
-        contentType: 'application/json',
-        error: function ajaxError(jqXHR, textStatus, errorThrown) {
-            console.error('Response: ', jqXHR.responseText);
-            alert('An error occured:\n' + jqXHR.responseText);
-        }
-    });
-    */
-    console.log("session:" + Auth);
   }
 }
 
