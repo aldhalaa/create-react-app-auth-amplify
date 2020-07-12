@@ -56,10 +56,10 @@ class App extends Component {
       };
       fetch(endpoint, requestOptions)
           .then(response => response.text())
-          .then(data => alert("Started instance:" + data)
+	  .then(data => alert("Started instance:" + data))
           .catch(error => {
               console.error('There was an error!', error);
-			        alert('Failed to start instance: ' +  error)
+	      alert('Failed to start instance: ' +  error);
           });
     });
     e.preventDefault();
