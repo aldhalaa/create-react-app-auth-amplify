@@ -6,7 +6,7 @@ import Amplify, { Auth } from 'aws-amplify';
 import aws_exports from './aws-exports';
 Amplify.configure(aws_exports);
 
-const endpoint = 'https://hlul1l52j3.execute-api.ap-northeast-2.amazonaws.com/Prod/ec2'
+const endpoint = 'https://itolwqn6n2.execute-api.us-west-2.amazonaws.com/Prod/ec2'
 
 class App extends Component {
   constructor(props) {
@@ -55,9 +55,11 @@ class App extends Component {
           },
       };
       fetch(endpoint, requestOptions)
-          .then(response => response.json())
+          .then(response => response.text())
+          .then(data => alert("Started instance:" + data)
           .catch(error => {
               console.error('There was an error!', error);
+			        alert('Failed to start instance: ' +  error)
           });
     });
     e.preventDefault();
