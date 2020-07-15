@@ -23,7 +23,7 @@ class App extends Component {
         <header className="App-header">
           
         <form onSubmit={this.handleSubmit}>
-          <div style={{text-align: "left"}} "htmlFor="ec2-start">
+          <div style={{textAlign: "left"}} "htmlFor="ec2-start">
             Begin an Ec2 Instance
           </div>
           <input type="text" value={this.state.value} onChange={this.handleChange} />
